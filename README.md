@@ -2,6 +2,29 @@
 ### This is a php project using MySQL as database.
 It's a travel website which allows user to login, signup, browse and filter travel packages.
 We can also create our own packages.
+### MySQL sample code
+```
+<?php
+  $servername = "<host:port>";
+  $username = "<username>";
+  $password = "<password>";
+  $dbname = "<dbname>";
+  $conn = new mysqli($servername, $username, $password, $dbname);
+  if ($conn->connect_error) 
+      die("Connection failed: " . $conn->connect_error);
+  $sql = "";
+  $result = $conn->query($sql);
+  if ($result->num_rows > 0) {
+      while($row = $result->fetch_assoc()) {
+          //todo                        
+      }
+  } else {
+      echo "0 results";
+  }
+            
+?>
+```
+
 
 # Feature Details
 
@@ -37,3 +60,5 @@ We can add more hotels to a specific detination and we can also delete hotel.
 
 ### Create Site
 We can add more sites to a specific detination and we can also delete site.
+
+
