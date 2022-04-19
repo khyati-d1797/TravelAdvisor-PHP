@@ -80,7 +80,6 @@
             ?>
             </select><br><br>
             <button class="button button2" href="admin_delete_dest.php">Delete Data</button>
-            
         </form>
         </div></div>
     </main>
