@@ -1,0 +1,266 @@
+/*TOP NAV*/
+.top-nav{
+    box-shadow: 0px 10px 10px rgba(0,0,0,0.3); 
+}
+
+
+.top-nav-link{
+    font-size: 16px;
+}
+
+.logo{
+    font-size: 20px;
+}
+
+.req{
+    color: red;
+}
+
+.img-fluid-fix{
+    width: 100%;
+    height: auto;
+}
+.nopadding {
+   padding: 0 !important;
+   margin: 0 !important;
+}
+
+.just-card{
+    padding: 16px;
+    margin-bottom: 26px;
+    box-shadow: 0px 10px 20px rgba(0,0,0,0.3);
+    background-color: white;
+}
+.just-card:hover{
+    box-shadow: 0px 10px 30px rgba(0,0,0,0.4);
+}
+
+.just-card-thick{
+    padding: 36px;
+    margin-bottom: 26px;
+    box-shadow: 0px 10px 20px rgba(0,0,0,0.3);
+    background-color: white;
+    
+    
+}
+.just-card-thick:hover{
+    box-shadow: 0px 10px 30px rgba(0,0,0,0.4);
+}
+
+/*INDEX - TOP SEARCHES*/
+.top-searches{
+    margin-top: 50px;
+}
+
+.top-search-img{ 
+    width: 100%;
+    height: auto;
+}
+
+.top-search-txt{
+    padding: 0px 16px 0px 16px;
+}
+
+.top-search-text-head{
+    padding: 10px 0px 0px 16px;
+}
+.top-search-card{
+    box-shadow: 0px 10px 10px rgba(0,0,0,0.3);
+}
+
+
+/*INDEX - main-search*/
+.main-search{
+    margin-top: 50px; 
+}
+
+.main-search-img{
+    background-image: url(images/mainBg.jpg); 
+    background-repeat: no-repeat; 
+    background-size:cover;
+    overflow: auto;
+    height: 100%;
+    width:100%;
+}
+.main-search-form{
+    margin: 160px 90px 90px 90px;
+    padding: 20px;
+    background-color: white;
+}
+
+
+.main-search-form-input{
+    padding: 15px; 
+    margin: 5px 0 5px 0; 
+    border: none; 
+    background: #f1f1f1;
+    width: 40%;
+}
+
+.main-search-form-button{
+    background-color: forestgreen; 
+    color: white; 
+    border: none;
+    padding: 15px; 
+    width: 100px;
+}
+
+
+/*CONTACT US - contact-form*/
+.contact-form{
+    margin-top: 30px; 
+    margin-bottom: 10px;
+    padding: 40px;
+}
+
+.contact-form-head{
+   
+    padding: 10px
+}
+
+.contact-form-inner{
+   background-color: #f2f2f2; 
+    padding: 20px; 
+   
+    box-shadow: 10px 10px 30px rgba(0,0,0,0.5);
+}
+
+.contact-form-input{
+    width: 100%; 
+    padding: 12px; 
+    box-sizing: border-box; 
+    margin-top:6px; 
+    margin-bottom:16px;
+}
+.contact-form-text-area{
+    width: 100%; 
+    padding: 12px; 
+    box-sizing: border-box; 
+    margin-top:6px; 
+    margin-bottom:16px; 
+    height:200px;
+}
+
+/*FEATURED featured-main*/
+.featured-main{
+    margin-top: 100px;
+}
+
+.featured-img-left{
+    width: 20%; 
+    float: left;
+}
+
+.featured-img-right{
+    width: 20%; 
+    float: right;
+}
+
+.featured-text-right{
+    padding:20px; 
+    margin-left: 740px;
+    
+}
+.featured-text-left{
+    padding:20px; 
+    
+}
+
+.featured-text-link{
+    text-decoration: none;
+    color: black;
+}
+
+/*SEARCH RESULT search-result-main*/
+.search-result-main{
+    padding: 90px;
+    margin-top: 0px;
+    margin-left: 100px;
+}
+
+.paging{
+    text-align: center;
+}
+
+
+/*ABOUT OUT */
+.contact-us{
+    margin-top: 30px; 
+    margin-bottom: 10px; 
+    margin-left: 200px;
+}
+.about-us{
+    margin-top: 150px;
+    margin-bottom: 100px;
+}
+.no-gutter{
+    padding-right:0;
+    padding-left:0;
+}
+/*TRIP DETAILS*/
+.trip-detail-main{
+    margin-top: 100px; 
+    margin-bottom: 100px
+}
+.trip-detail-timing{
+    
+}
+.trip-detail-location{
+    
+}
+.trip-detail-img-inner{
+    max-width: 100%;
+  height: auto
+}
+
+.trip-detail-img-slider{
+    padding: 0 !important; 
+    margin: 0 !important;
+}
+
+.trip-detail-imgs{
+    border:1px solid black;
+
+}
+
+/*SIGNUP FORM*/
+.signup-form-input{
+    width: 100%; 
+    padding: 12px;
+    box-sizing: border-box; 
+    margin-top:6px; 
+    margin-bottom:16px;
+}
+
+
+.signup-form-main{
+    margin-top:100px; 
+}
+
+/*FOOTER*/
+.footer{
+    background-color: #303030; 
+    padding: 10px;
+    color: white; 
+    overflow: auto; 
+    margin-top:10px;
+}
+
+.footer-col-content{
+    padding: 10px 60px 10px 60px; 
+}
+
+.footer-link{
+    color: white; 
+    display: block; 
+    text-decoration: none;
+    font-size: 16px;
+}
+
+.footer-form-txt{
+    color: black; 
+    margin: 8px 0px; 
+    padding: 12px; 
+    border: 1px solid #ccc;
+    width: 100%;
+}
