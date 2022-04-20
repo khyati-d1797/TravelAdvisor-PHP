@@ -225,11 +225,40 @@
   <div class="col-sm-4">
     </div>
     <div class="col-sm-4" >
-      <a href="createOwnPackage.php">
+      <!-- <a href="createOwnPackage.php"> -->
         <span class="glyphicon glyphicon-certificate logo-small"></span>
         <h4>Create own package</h4>
-        <p>Create your own package by the list of choices.</p>
-      </a>
+        <p>Create your own package by the list of destinations.</p>
+      <!-- </a> -->
+      <form action="createOwnPackage.php" method="post">
+    <div class="row">
+      <div class="col-sm-2"></div>
+      <div class="input-group col-sm-8" style="color:black; ">
+        <select id="dest" name="dest" style="padding:5px;">
+              <?php 
+                  $servername = "localhost:3306";
+                  $username = "root";
+                  $password = "";
+                  $dbname = "travel_explorer_db";
+                  $conn = new mysqli($servername, $username, $password, $dbname);
+                  if ($conn->connect_error) 
+                      die("Connection failed: " . $conn->connect_error);
+                  $sql = "select id, des_name from destinations";
+                  $result = $conn->query($sql);
+                  if ($result->num_rows > 0) {
+                      while($row = $result->fetch_assoc()) {
+                          echo "<option value=".$row["id"].">".$row["des_name"]."</option>";                            
+                      }
+                  } else {
+                      echo "0 results";
+                  }
+              ?>
+        </select>
+        <input type="submit" value="Submit" class="btn btn-danger" >
+      </div>
+      <div class="col-sm-2"></div>
+    </div>
+  </form>
     </div>
     <div class="col-sm-4">
     </div>
