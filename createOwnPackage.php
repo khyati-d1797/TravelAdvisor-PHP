@@ -61,7 +61,7 @@
                         });
                     </script>
                 </div>
-                
+
                 <div class="row" style="padding-top: 10px;">
                     <div class="col-sm-3" align="right"><input class="btn" type="button" onclick="prevImage();" style="height:95px; margin: auto;" value="Prev"></div>
                     <div class="col-sm-1 trip-detail-img-slider" onclick="pickImage1();"><img class="trip-detail-imgs" id="imgX1" src="images/s1.jpg" width="100%" border="1" style="border:5px solid yellow;"></div>
@@ -82,24 +82,7 @@
                 <h2>Choose your own itinerary</h2>
                 <h4>Choose your own stop and transportation, hotels and meals. Prices will be according to your choices.</h4>
             </div>
-            <div class="just-card">
-                <h1>Locations</h1>
-                <h4>These breath taking scenic views will make you feel mesmerized. A trip to remember.</h4>
-                <h4>
-                    <form action="/action_page.php">
-                    <label for="location">Choose a location:</label>
-                    <select name="location" id="location">
-                        <option value="Toronto">Toronto</option>
-                        <option value="Calgary">Calgary</option>
-                        <option value="Vancouver">Vancouver</option>
-                        <option value="Niagara Falls">Niagara Falls</option>
-                        <option value="Montreal">Montreal</option>
-                    </select>
-                    <br><br>
-                    <input type="submit" value="Submit">
-                    </form>
-                </h4>
-            </div>
+            
             <div class="just-card">
                 <div class="row" style="text-align: center;"> 
                     <h1>Dates</h1>
@@ -124,44 +107,44 @@
                 <div class="row">
                     <div class="col-sm-12 "> 
                         <h3 style="padding-left: 20px;"> Please choose the sub destinations you want to visit.</h3>
-                        <ul>
+                        
                         <?php
+                            $location = $_POST["dest"];
+
                             $servername = "localhost:3306";
                             $username = "root";
                             $password = "";
                             $dbname = "travel_explorer_db";
-
-
+                            
                             // Create connection
                             $conn = new mysqli($servername, $username, $password, $dbname);
                             // Check connection
                             if ($conn->connect_error) {
-                            die("Connection failed: " . $conn->connect_error);
+                                die("Connection failed: " . $conn->connect_error);
                             }
-                            //echo "Connected successfully";
-                            //Retrieve data
-                            $sql = "SELECT site_name, site_description, site_rating, site_price FROM sites WHERE des_id = 1";
+                            $sql = "SELECT * FROM sites WHERE des_id = $location";
+
                             $result = $conn->query($sql);
                             if ($result->num_rows > 0) {
-                                $dest_index = 1;
-                            while($row = $result->fetch_assoc()) {
-                                echo '<div class="col-sm-4">
-                                        <div class="thumbnail just-card" id="dest-card-'.$dest_index.'">
-                                        <label class="radio-inline" onclick="destSelected('.$dest_index.');">
-                                            <input type="checkbox" id="dest1" value="Dest1::'.$row["site_price"].'" name="optradio" style="visibility: hidden;"><strong>'.$row["site_name"].'</strong><br>
-                                            <strong>Description:</strong> '. $row["site_description"]. '<br><strong>Ratings:</strong> ' . $row["site_rating"]. '<br><strong>Price:</strong>' . $row["site_price"] .'<br>
-                                        </label>
-                                    </div>
-                                </div>';
-                                $dest_index = $dest_index+1;
+                                while($row = $result->fetch_assoc()) {
+                                    $toPrint = '<div class="col-sm-4"><div class="thumbnail just-card">';
+                                    $toPrint = $toPrint.'<img id="img1" src="'.$row["img_url"].'" alt="Description" style="width: 600px; 
+                                    height: 400px; 
+                                    object-fit: cover;">';
+                                    $toPrint = $toPrint.'<p class="top-search-text-head"><strong><input type="checkbox" id="'.$row["id"].'" name="'.$row["site_name"].'" value="'.$row["id"].'"> ' . $row["site_name"] . '</strong></p>';
+                                    $toPrint = $toPrint.'<div class="top-search-txt"><a style="text-decoration: none; color: black;">'.substr($row["site_description"],0, 100).'</a></div>';
+                                    $toPrint = $toPrint.'<div class="top-search-txt"><strong>Ratings:</strong> ' . $row["site_rating"]. '<br><strong>Price:</strong> $' . $row["site_price"].'</div>';
+                                    $toPrint = $toPrint.'';
+                                    $toPrint = $toPrint.'</div></div>';
+                                    
+                                    echo $toPrint;
+                                } 
+                            }else{
+                                echo "0 results";
                             }
-                            } else {
-                            echo "0 results";
-                            }
-                            ?>
-                           <li><h2><input type="checkbox" id="des1" name="destination1" value="Mountain::230"> Mountain</h2></li>Some exoic views for your eyes. Sunrise and Sunset, depends on what you choose.
-                            <li><h2><input type="checkbox" id="des2" name="destination1" value="River::180"> River</h2></li>Beauitful river and full of fresh water with adventure sports like rafting.
-                        </ul>
+                        $conn->close();
+                        ?>
+                        
                     </div>
                 </div>
             </div>
@@ -221,30 +204,56 @@
                     <h4>Please pick your hotel</h4>
                 </div>
                 
-                <div class="col-sm-4">
+                <!-- <div class="col-sm-4">
                     <div class="thumbnail just-card" id="hotel-card-1">
                         <label class="radio-inline" onclick="hotelSelected(1);">
                             <img src="images/hotel1.jpg" alt="Description" style="width: 100%;padding-right: 18px;">
                             <input type="radio" id="hotel1" value="Lions Hotel::125" name="optradio" style="visibility: hidden;"><strong> Lions Hotel </strong> +$125 for upgrade
                         </label>
                     </div>
-                </div>
-                <div class="col-sm-4">
-                    <div class="thumbnail just-card" id="hotel-card-2">
-                        <label class="radio-inline" onclick="hotelSelected(2);">
-                            <img src="images/hotel2.jpg" alt="Description" style="width: 100%; padding-right: 18px;">
-                            <input type="radio" id="hotel2" value="Radisson Hotel::195" name="optradio" style="visibility: hidden;"><strong> Radisson Hotel </strong> +$195 for upgrade
-                        </label>
-                    </div>
-                </div>
-                <div class="col-sm-4">
-                    <div class="thumbnail just-card" id="hotel-card-3">
-                        <label class="radio-inline" onclick="hotelSelected(3);">
-                            <img src="images/hotel3.jpg" alt="Description" style="width: 100%;padding-right: 18px;">
-                            <input type="radio" id="hotel3" value="Regency Hotel::150" name="optradio" style="visibility: hidden;"><strong> Regency Hotel </strong> +$150 for upgrade
-                        </label>
-                    </div>
-                </div>
+                </div> -->
+                <?php
+                            $location = $_POST["dest"];
+
+                            $servername = "localhost:3306";
+                            $username = "root";
+                            $password = "";
+                            $dbname = "travel_explorer_db";
+                            
+                            // Create connection
+                            $conn = new mysqli($servername, $username, $password, $dbname);
+                            // Check connection
+                            if ($conn->connect_error) {
+                                die("Connection failed: " . $conn->connect_error);
+                            }
+                            $sql = "SELECT * FROM hotels where des_id=".$location;
+
+                            $result = $conn->query($sql);
+                            if ($result->num_rows > 0) {
+                                while($row = $result->fetch_assoc()) {
+                                    $toPrint = '<div class="col-sm-4"><div class="thumbnail just-card">';
+                                    // $toPrint = $toPrint.'<img id="img1" src="'.$row["img_url"].'" alt="Description" style="width: 600px; 
+                                    // height: 400px; 
+                                    // object-fit: cover;">';
+
+                                    // $toPrint = $toPrint.'<img id="img1" src="'.'" alt="Description" style="width: 600px; 
+                                    // height: 400px; 
+                                    // object-fit: cover;">';
+                                    $toPrint = $toPrint.'<p class="top-search-text-head"><strong><input type="radio" id="'.$row["id"].'" name="hotel" value="'.$row["id"].'"> ' . $row["hotel_name"] . '</strong></p>';
+                                    $toPrint = $toPrint.'<div class="top-search-txt"><a style="text-decoration: none; color: black;">'.substr($row["hotel_name"],0, 100).'</a></div>';
+                                    $toPrint = $toPrint.'<div class="top-search-txt"><strong>Ratings:</strong> ' . $row["hotel_rating"]. '<br><strong>Price:</strong> $' . $row["hotel_price"].'</div>';
+                                    $toPrint = $toPrint.'';
+                                    $toPrint = $toPrint.'</div></div>';
+                                    
+                                    echo $toPrint;
+                                } 
+                            }else{
+                                echo "0 results";
+                            }
+                        $conn->close();
+                        ?>
+
+                
             </div>
              
              
