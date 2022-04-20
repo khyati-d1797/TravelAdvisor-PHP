@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 20, 2022 at 03:02 AM
+-- Generation Time: Apr 20, 2022 at 06:06 AM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 8.1.1
 
@@ -20,6 +20,44 @@ SET time_zone = "+00:00";
 --
 -- Database: `travel_explorer_db`
 --
+CREATE DATABASE IF NOT EXISTS `travel_explorer_db` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
+USE `travel_explorer_db`;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `contacts_form`
+--
+
+DROP TABLE IF EXISTS `contacts_form`;
+CREATE TABLE `contacts_form` (
+  `id` int(6) UNSIGNED NOT NULL,
+  `contact_name` varchar(30) NOT NULL,
+  `contact_country` varchar(30) NOT NULL,
+  `contact_email` varchar(60) NOT NULL,
+  `contact_feadback` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `contacts_form`
+--
+
+INSERT INTO `contacts_form` (`id`, `contact_name`, `contact_country`, `contact_email`, `contact_feadback`) VALUES
+(1, 'Maryann ', 'canada', 'maryann@yahoo.com', 'Good'),
+(2, 'Mark', 'india', 'Mark@gmail.com', 'very good'),
+(3, 'Smith', 'paris', 'smith@yahoo.com', ''),
+(4, 'Meilika', 'canada', 'meilika@yahoo.com', 'so far so good'),
+(5, 'Bill', 'canada', 'bill@yahoo.com', ''),
+(6, 'John', 'rome', 'john@yahoo.com', 'good'),
+(7, 'Sara', 'hong kong', 'sara@gmail.com', 'so far so good'),
+(8, 'martin', 'paris', 'martin@yahoo.com', 'good'),
+(9, 'mary', 'canada', 'mary@yahoo.com', 'so far so good'),
+(10, 'Jay', 'india', 'jay@gmail.com', 'very good'),
+(11, 'George', 'usa', 'george@yahoo.com', 'good'),
+(12, 'Ida', 'hong kong', 'ida@yahoo.com', 'good'),
+(13, 'Marly', 'usa', 'marly@yahoo.com', 'good'),
+(0, 'KHYATI HIRALAL DHIVER', 'canada', 'jinnydhiver@gmail.com', 'asdsadsdasdsadsadsaa'),
+(0, 'Khyati Dhiver', 'india', 'jinnydhiver@gmail.com', 'edftbgyhumjkl;');
 
 -- --------------------------------------------------------
 
@@ -27,6 +65,7 @@ SET time_zone = "+00:00";
 -- Table structure for table `custom_trips`
 --
 
+DROP TABLE IF EXISTS `custom_trips`;
 CREATE TABLE `custom_trips` (
   `id` int(11) NOT NULL,
   `user_id` int(11) NOT NULL,
@@ -41,6 +80,7 @@ CREATE TABLE `custom_trips` (
 -- Table structure for table `custom_trips_sites`
 --
 
+DROP TABLE IF EXISTS `custom_trips_sites`;
 CREATE TABLE `custom_trips_sites` (
   `trip_id` int(11) NOT NULL,
   `user_id` int(11) NOT NULL,
@@ -53,6 +93,7 @@ CREATE TABLE `custom_trips_sites` (
 -- Table structure for table `destinations`
 --
 
+DROP TABLE IF EXISTS `destinations`;
 CREATE TABLE `destinations` (
   `id` int(11) NOT NULL,
   `des_name` varchar(20) NOT NULL,
@@ -78,6 +119,7 @@ INSERT INTO `destinations` (`id`, `des_name`, `des_distance`, `des_rating`) VALU
 -- Table structure for table `hotels`
 --
 
+DROP TABLE IF EXISTS `hotels`;
 CREATE TABLE `hotels` (
   `id` int(11) NOT NULL,
   `hotel_name` varchar(50) NOT NULL,
@@ -120,9 +162,46 @@ INSERT INTO `hotels` (`id`, `hotel_name`, `hotel_rating`, `hotel_price`, `des_id
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `login`
+--
+
+DROP TABLE IF EXISTS `login`;
+CREATE TABLE `login` (
+  `id` int(11) NOT NULL,
+  `login_username` varchar(50) NOT NULL,
+  `login_password` varchar(50) NOT NULL,
+  `usertype` varchar(10) NOT NULL DEFAULT 'user'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `login`
+--
+
+INSERT INTO `login` (`id`, `login_username`, `login_password`, `usertype`) VALUES
+(1, 'admin', 'admin', 'admin'),
+(2, 'khyati_17', 'khyati1797', 'user');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `login_form`
+--
+
+DROP TABLE IF EXISTS `login_form`;
+CREATE TABLE `login_form` (
+  `id` int(6) UNSIGNED NOT NULL,
+  `login_username` varchar(30) NOT NULL,
+  `login_password` varchar(30) NOT NULL,
+  `remember_me` varchar(20) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `sites`
 --
 
+DROP TABLE IF EXISTS `sites`;
 CREATE TABLE `sites` (
   `id` int(11) NOT NULL,
   `site_name` varchar(100) NOT NULL,
@@ -153,16 +232,56 @@ INSERT INTO `sites` (`id`, `site_name`, `site_description`, `site_rating`, `site
 (13, 'Niagara Sky Wheel', 'Niagara SkyWheel is a 175-foot tall Ferris wheel in the middle of Clifton Hill, Niagara Falls, Ontario, Canada. Niagara SkyWheel is a Ronald Bussink Professional Rides designed R60 Giant Wheel, manufactured by Chance Rides and supplied by Chance Morgan. It opened on 17 June 2006, at a cost of $10 million. Its 42 Swiss-manufactured fully enclosed passenger cars can each carry nine people and are heated in the winter and air conditioned in the warmer months. The ride is approximately 12 to 15 minutes long, giving passengers views of the Niagara River, and the Horseshoe Falls and American Falls, and is open all year, from 9:00 am to 1:00 am.', '4.6', 14, 3, 'images/Niagara/wheel.jpg'),
 (14, 'Journey behind the falls', 'Journey Behind the Falls is an attraction in Niagara Falls, Ontario, Canada located in the Table Rock Centre beside the Canadian Horseshoe Falls. It is open year round and run by the Niagara Parks Commission.', '4.4', 16, 3, 'images/Niagara/walls.jpg'),
 (15, 'Skylon Tower', 'The Skylon Tower, in Niagara Falls, Ontario, is an observation tower that overlooks both the American Falls, New York, and the larger Horseshoe Falls, Ontario, from the Canadian side of the Niagara River.', '4.4', 15, 3, 'images/Niagara/skylon.jpg'),
-(16, 'CN Tower', 'The CN Tower is a 553.3 m-high concrete communications and observation tower located in the downtown core of Toronto, Ontario, Canada. Built on the former Railway Lands, it was completed in 1976. Its name CN originally referred to Canadian National, the railway company that built the tower. Following the railway\'s decision to divest non-core freight railway assets prior to the company\'s privatization in 1995, it transferred the tower to the Canada Lands Company, a federal Crown corporation responsible for real estate development. The CN Tower held the record for the world\'s tallest free-standing structure for 32 years, from 1975 until 2007, when it was surpassed by the Burj Khalifa, and was the world\'s tallest tower until 2009 when it was surpassed by the Canton Tower. It is currently the ninth tallest free-standing structure in the world and remains the tallest free-standing structure on land in the Western Hemisphere. In 1995, the CN Tower was declared one of the modern Seven Wonders', '4.6', 15, 4, ''),
-(17, 'Royal Ontario Museum', 'The Royal Ontario Museum is a museum of art, world culture and natural history in Toronto, Ontario, Canada. It is one of the largest museums in North America and the largest in Canada. It attracts more than one million visitors every year, making the ROM the most-visited museum in Canada. The museum is north of Queen\'s Park, in the University of Toronto district, with its main entrance on Bloor Street West. Museum subway station is named after the ROM and, since a 2008 renovation, is decorated to resemble the institution\'s collection. Established on 16 April 1912 and opened on 19 March 1914, the museum has maintained close relations with the University of Toronto throughout its history, often sharing expertise and resources. The museum was under the direct control and management of the University of Toronto until 1968, when it became an independent Crown agency of the Government of Ontario. Today, the museum is Canada\'s largest field-research institution, with research and conservation', '4.7', 23, 4, ''),
-(18, 'High Park', 'High Park is a municipal park in Toronto, Ontario, Canada. High Park is a mixed recreational and natural park, with sporting facilities, cultural facilities, educational facilities, gardens, playgrounds and a zoo. One-third of the park remains in a natural state, with a rare oak savannah ecology. High Park was opened to the public in 1876 and is based on a bequest of land from John George Howard to the City of Toronto. It spans 161 hectares and is the second-largest municipal park in Toronto, after Centennial Park. High Park is located to the west of downtown Toronto, north of Humber Bay, and is maintained by the City of Toronto Parks Department. It stretches south from Bloor Street West to The Queensway, just north of Lake Ontario. It is bounded on the west by Ellis Park Road and Grenadier Pond and on the east by Parkside Drive.', '4.7', 0, 4, ''),
-(19, 'Toronto Island', 'The Toronto Islands —are a chain of 15 small islands in Lake Ontario, south of mainland Toronto, Ontario, Canada. Comprising the only group of islands in the western part of Lake Ontario, the Toronto Islands are located just offshore from the city\'s downtown area, provide shelter for Toronto Harbour, and separate Toronto from the rest of Lake Ontario. The islands are home to the Toronto Island Park, the Billy Bishop Toronto City Airport, several private yacht clubs, a public marina, Centreville Amusement Park, a year round residential neighbourhood, and several public beaches. The island community is the largest urban car-free community in North America. All access to the Islands is by water, by City of Toronto ferries operating all year from Jack Layton Ferry Terminal at the foot of Bay Street or privately operated water taxis during the months of May to September. The Toronto Islands are a popular tourist and recreational destination. Bicycles are accommodated on the ferries at no ch', '4.8', 20, 4, ''),
-(20, 'St. Lawrence Market', 'The St. Lawrence Market South building is a major public market building in Toronto, Ontario, Canada. It is located on the southwest corner of Front and Lower Jarvis Streets. Along with the St. Lawrence Market North and St. Lawrence Hall, it comprises the St. Lawrence Market complex. The current building was opened in 1902, incorporating the 1845 Toronto City Hall building into the structure. The building was restored during the 1970s.', '4.6', 0, 4, ''),
-(21, 'The montreal museum of fine arts', 'The Montreal Museum of Fine Arts is an art museum in Montreal, Quebec, Canada. It is the largest art museum in Canada by gallery space. The museum is located on the historic Golden Square Mile stretch of Sherbrooke Street. The MMFA is spread across five pavilions, and occupies a total floor area of 53,095 square metres, 13,000 of which are exhibition space. With the 2016 inauguration of the Michal and Renata Hornstein Pavilion for Peace, the museum campus was expected to become the eighteenth largest art museum in North America. The permanent collection included approximately 44,000 works in 2013. The original \"reading room\" of the Art Association of Montreal was the precursor of the museum\'s current library, the oldest art library in Canada. The Montreal Museum of Fine Arts is a member of the International Group of Organizers of Large-scale Exhibitions, also known as the Bizot Group, a forum which allows the leaders of the largest museums in the world to exchange works and exhibitions', '4.7', 24, 5, ''),
-(22, 'Mount Royal', 'Mount Royal is a large intrusive rock hill or small mountain in the city of Montreal, immediately west of Downtown Montreal, Quebec, Canada. The best-known hypothesis for the origin of the name Montreal is that the name is taken from Mount Royal. The hill is part of the Monteregian Hills situated between the Laurentians and the Appalachian Mountains. It gave its Latin name, Mons Regius, to the Monteregian chain. The hill consists of three peaks: Colline de la Croix at 233 m, Colline d\'Outremont at 211 m, and Westmount Summit at 201 m elevation above mean sea level.', '4.7', 0, 5, ''),
-(23, 'La Ronde', 'La Ronde is an amusement park in Montreal, Quebec, Canada, built as the entertainment complex for Expo 67, the 1967 World Fair. Today, it is operated by Six Flags under an emphyteutic lease with the City of Montreal, which expires in 2065. It is the largest amusement park in Quebec and second largest in Canada. It is on 59 hectares located on the Northern tip of Saint Helen\'s Island. This is a man-made extension to the island in the space where the small Ronde Island had been. The park hosts L\'International des Feux Loto-Québec, an international fireworks competition. La Ronde is one of three Six Flags parks not to be officially branded as a Six Flags park, Great Escape in Queensbury, New York, and Frontier City in Oklahoma City, Oklahoma being the other two.', '4.1', 42, 5, ''),
-(24, 'Montreal Underground City', 'RÉSO, commonly referred to as the Underground City, is the name applied to a series of interconnected office towers, hotels, shopping centres, residential and commercial complexes, convention halls, universities and performing arts venues that form the heart of Montreal\'s central business district, colloquially referred to as Downtown Montreal. The name refers to the underground connections between the buildings that compose the network, in addition to the network\'s complete integration with the city\'s entirely underground rapid transit system, the Montreal Metro. Moreover, the first iteration of the Underground City was developed out of the open pit at the southern entrance to the Mount Royal Tunnel, where Place Ville Marie and Central Station stand today. Though most of the connecting tunnels pass underground, many of the key passageways and principal access points are located at ground level, and there is also one skybridge. In this regard, the Underground City is more of an indoor ', '4.3', 0, 5, ''),
-(25, 'Montreal Science Centre', 'The Montreal Science Centre is a science museum in Montreal, Quebec, Canada. It is located on the King Edward Pier in the Old Port of Montreal. Established in 2000 and originally known as the iSci Centre, the museum changed its name to the Montreal Science Centre in 2002. The museum is managed by the Old Port of Montreal Corporation. The museum is home to interactive exhibitions on science and technology as well as an IMAX theatre.', '4.4', 35, 5, '');
+(16, 'CN Tower', 'The CN Tower is a 553.3 m-high concrete communications and observation tower located in the downtown core of Toronto, Ontario, Canada. Built on the former Railway Lands, it was completed in 1976. Its name CN originally referred to Canadian National, the railway company that built the tower. Following the railway\'s decision to divest non-core freight railway assets prior to the company\'s privatization in 1995, it transferred the tower to the Canada Lands Company, a federal Crown corporation responsible for real estate development. The CN Tower held the record for the world\'s tallest free-standing structure for 32 years, from 1975 until 2007, when it was surpassed by the Burj Khalifa, and was the world\'s tallest tower until 2009 when it was surpassed by the Canton Tower. It is currently the ninth tallest free-standing structure in the world and remains the tallest free-standing structure on land in the Western Hemisphere. In 1995, the CN Tower was declared one of the modern Seven Wonders', '4.6', 15, 4, 'images/Toronto/cn.jpg'),
+(17, 'Royal Ontario Museum', 'The Royal Ontario Museum is a museum of art, world culture and natural history in Toronto, Ontario, Canada. It is one of the largest museums in North America and the largest in Canada. It attracts more than one million visitors every year, making the ROM the most-visited museum in Canada. The museum is north of Queen\'s Park, in the University of Toronto district, with its main entrance on Bloor Street West. Museum subway station is named after the ROM and, since a 2008 renovation, is decorated to resemble the institution\'s collection. Established on 16 April 1912 and opened on 19 March 1914, the museum has maintained close relations with the University of Toronto throughout its history, often sharing expertise and resources. The museum was under the direct control and management of the University of Toronto until 1968, when it became an independent Crown agency of the Government of Ontario. Today, the museum is Canada\'s largest field-research institution, with research and conservation', '4.7', 23, 4, 'images/Toronto/museum.jpg'),
+(18, 'High Park', 'High Park is a municipal park in Toronto, Ontario, Canada. High Park is a mixed recreational and natural park, with sporting facilities, cultural facilities, educational facilities, gardens, playgrounds and a zoo. One-third of the park remains in a natural state, with a rare oak savannah ecology. High Park was opened to the public in 1876 and is based on a bequest of land from John George Howard to the City of Toronto. It spans 161 hectares and is the second-largest municipal park in Toronto, after Centennial Park. High Park is located to the west of downtown Toronto, north of Humber Bay, and is maintained by the City of Toronto Parks Department. It stretches south from Bloor Street West to The Queensway, just north of Lake Ontario. It is bounded on the west by Ellis Park Road and Grenadier Pond and on the east by Parkside Drive.', '4.7', 0, 4, 'images/Toronto/highpark.jpg'),
+(19, 'Toronto Island', 'The Toronto Islands —are a chain of 15 small islands in Lake Ontario, south of mainland Toronto, Ontario, Canada. Comprising the only group of islands in the western part of Lake Ontario, the Toronto Islands are located just offshore from the city\'s downtown area, provide shelter for Toronto Harbour, and separate Toronto from the rest of Lake Ontario. The islands are home to the Toronto Island Park, the Billy Bishop Toronto City Airport, several private yacht clubs, a public marina, Centreville Amusement Park, a year round residential neighbourhood, and several public beaches. The island community is the largest urban car-free community in North America. All access to the Islands is by water, by City of Toronto ferries operating all year from Jack Layton Ferry Terminal at the foot of Bay Street or privately operated water taxis during the months of May to September. The Toronto Islands are a popular tourist and recreational destination. Bicycles are accommodated on the ferries at no ch', '4.8', 20, 4, 'images/Toronto/tisland.jpg'),
+(20, 'St. Lawrence Market', 'The St. Lawrence Market South building is a major public market building in Toronto, Ontario, Canada. It is located on the southwest corner of Front and Lower Jarvis Streets. Along with the St. Lawrence Market North and St. Lawrence Hall, it comprises the St. Lawrence Market complex. The current building was opened in 1902, incorporating the 1845 Toronto City Hall building into the structure. The building was restored during the 1970s.', '4.6', 0, 4, 'images/Toronto/market.jpg'),
+(21, 'The montreal museum of fine arts', 'The Montreal Museum of Fine Arts is an art museum in Montreal, Quebec, Canada. It is the largest art museum in Canada by gallery space. The museum is located on the historic Golden Square Mile stretch of Sherbrooke Street. The MMFA is spread across five pavilions, and occupies a total floor area of 53,095 square metres, 13,000 of which are exhibition space. With the 2016 inauguration of the Michal and Renata Hornstein Pavilion for Peace, the museum campus was expected to become the eighteenth largest art museum in North America. The permanent collection included approximately 44,000 works in 2013. The original \"reading room\" of the Art Association of Montreal was the precursor of the museum\'s current library, the oldest art library in Canada. The Montreal Museum of Fine Arts is a member of the International Group of Organizers of Large-scale Exhibitions, also known as the Bizot Group, a forum which allows the leaders of the largest museums in the world to exchange works and exhibitions', '4.7', 24, 5, 'images/Montreal/mmuseum.jpg'),
+(22, 'Mount Royal', 'Mount Royal is a large intrusive rock hill or small mountain in the city of Montreal, immediately west of Downtown Montreal, Quebec, Canada. The best-known hypothesis for the origin of the name Montreal is that the name is taken from Mount Royal. The hill is part of the Monteregian Hills situated between the Laurentians and the Appalachian Mountains. It gave its Latin name, Mons Regius, to the Monteregian chain. The hill consists of three peaks: Colline de la Croix at 233 m, Colline d\'Outremont at 211 m, and Westmount Summit at 201 m elevation above mean sea level.', '4.7', 0, 5, 'images/Montreal/Mount_Royal.jpg'),
+(23, 'La Ronde', 'La Ronde is an amusement park in Montreal, Quebec, Canada, built as the entertainment complex for Expo 67, the 1967 World Fair. Today, it is operated by Six Flags under an emphyteutic lease with the City of Montreal, which expires in 2065. It is the largest amusement park in Quebec and second largest in Canada. It is on 59 hectares located on the Northern tip of Saint Helen\'s Island. This is a man-made extension to the island in the space where the small Ronde Island had been. The park hosts L\'International des Feux Loto-Québec, an international fireworks competition. La Ronde is one of three Six Flags parks not to be officially branded as a Six Flags park, Great Escape in Queensbury, New York, and Frontier City in Oklahoma City, Oklahoma being the other two.', '4.1', 42, 5, 'images/Montreal/laronde.jpg'),
+(24, 'Montreal Underground City', 'RÉSO, commonly referred to as the Underground City, is the name applied to a series of interconnected office towers, hotels, shopping centres, residential and commercial complexes, convention halls, universities and performing arts venues that form the heart of Montreal\'s central business district, colloquially referred to as Downtown Montreal. The name refers to the underground connections between the buildings that compose the network, in addition to the network\'s complete integration with the city\'s entirely underground rapid transit system, the Montreal Metro. Moreover, the first iteration of the Underground City was developed out of the open pit at the southern entrance to the Mount Royal Tunnel, where Place Ville Marie and Central Station stand today. Though most of the connecting tunnels pass underground, many of the key passageways and principal access points are located at ground level, and there is also one skybridge. In this regard, the Underground City is more of an indoor ', '4.3', 0, 5, 'images/Montreal/underground.jpg'),
+(25, 'Montreal Science Centre', 'The Montreal Science Centre is a science museum in Montreal, Quebec, Canada. It is located on the King Edward Pier in the Old Port of Montreal. Established in 2000 and originally known as the iSci Centre, the museum changed its name to the Montreal Science Centre in 2002. The museum is managed by the Old Port of Montreal Corporation. The museum is home to interactive exhibitions on science and technology as well as an IMAX theatre.', '4.4', 35, 5, 'images/Montreal/science.jpg');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `table_name`
+--
+
+DROP TABLE IF EXISTS `table_name`;
+CREATE TABLE `table_name` (
+  `id` double DEFAULT NULL,
+  `des_id` double DEFAULT NULL,
+  `hotel_id` double DEFAULT NULL,
+  `t_id` varchar(100) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `table_name`
+--
+
+INSERT INTO `table_name` (`id`, `des_id`, `hotel_id`, `t_id`) VALUES
+(1, 1, 1, ''),
+(2, 1, 2, ''),
+(3, 1, 3, ''),
+(4, 1, 4, ''),
+(5, 1, 5, ''),
+(6, 1, 1, ''),
+(7, 1, 2, ''),
+(8, 1, 3, ''),
+(9, 1, 4, ''),
+(0, 0, 0, ''),
+(0, 0, 0, ''),
+(0, 0, 0, ''),
+(0, 0, 0, ''),
+(0, 0, 0, ''),
+(0, 0, 0, ''),
+(0, 0, 0, ''),
+(0, 0, 0, ''),
+(0, 0, 0, ''),
+(0, 0, 0, ''),
+(0, 0, 0, '');
 
 -- --------------------------------------------------------
 
@@ -170,6 +289,7 @@ INSERT INTO `sites` (`id`, `site_name`, `site_description`, `site_rating`, `site
 -- Table structure for table `transports`
 --
 
+DROP TABLE IF EXISTS `transports`;
 CREATE TABLE `transports` (
   `id` int(11) NOT NULL,
   `t_name` varchar(10) NOT NULL,
@@ -192,6 +312,7 @@ INSERT INTO `transports` (`id`, `t_name`, `t_price`, `t_rating`, `t_description`
 -- Table structure for table `trips`
 --
 
+DROP TABLE IF EXISTS `trips`;
 CREATE TABLE `trips` (
   `id` int(11) NOT NULL,
   `des_id` int(11) NOT NULL,
@@ -220,6 +341,7 @@ INSERT INTO `trips` (`id`, `des_id`, `hotel_id`, `t_id`) VALUES
 -- Table structure for table `trip_sites`
 --
 
+DROP TABLE IF EXISTS `trip_sites`;
 CREATE TABLE `trip_sites` (
   `trip_id` int(11) NOT NULL,
   `site_id` int(11) NOT NULL
@@ -257,6 +379,7 @@ INSERT INTO `trip_sites` (`trip_id`, `site_id`) VALUES
 -- Table structure for table `users`
 --
 
+DROP TABLE IF EXISTS `users`;
 CREATE TABLE `users` (
   `id` int(11) NOT NULL,
   `u_fname` varchar(20) NOT NULL,
@@ -275,6 +398,7 @@ CREATE TABLE `users` (
 -- Table structure for table `user_feedback`
 --
 
+DROP TABLE IF EXISTS `user_feedback`;
 CREATE TABLE `user_feedback` (
   `id` int(11) NOT NULL,
   `name` varchar(60) NOT NULL,
@@ -325,6 +449,12 @@ ALTER TABLE `destinations`
 ALTER TABLE `hotels`
   ADD PRIMARY KEY (`id`),
   ADD KEY `des_hotel_fk` (`des_id`);
+
+--
+-- Indexes for table `login`
+--
+ALTER TABLE `login`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `sites`
@@ -382,6 +512,12 @@ ALTER TABLE `destinations`
 --
 ALTER TABLE `hotels`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
+
+--
+-- AUTO_INCREMENT for table `login`
+--
+ALTER TABLE `login`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `sites`
