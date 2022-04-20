@@ -44,13 +44,13 @@
     
     <div class="container-fluid search-result-main"> 
         <div class="container">
-            <h2>Search Result</h2>
-            <h4>Showing you the best trips curated to your needs wishes.</h4>
+            <h2>More Information</h2>
+            <h4>Showing additional information for the site chosen</h4>
         </div>
 
         <div class="row">
     <?php
-        $location = $_POST["dest"];
+            $site =  $_POST["site"];
 
             $servername = "localhost:3306";
             $username = "root";
@@ -63,19 +63,18 @@
             if ($conn->connect_error) {
                 die("Connection failed: " . $conn->connect_error);
             }
-            $sql = "SELECT * FROM sites WHERE des_id = $location";
+            $sql = "SELECT * FROM sites WHERE id = $site";
 
             $result = $conn->query($sql);
             if ($result->num_rows > 0) {
                 while($row = $result->fetch_assoc()) {
-                    $toPrint = '<form action="details.php" method="POST"><div class="col-sm-4"><div class="thumbnail just-card">';
+                    $toPrint = '<div class="col-sm-12"><div class="thumbnail just-card">';
                     $toPrint = $toPrint.'<img id="img1" src="'.$row["img_url"].'" alt="Description" style="width: 600px; 
                     height: 400px; 
                     object-fit: cover;">';
                     $toPrint = $toPrint.'<p class="top-search-text-head"><strong>' . $row["site_name"] . '</strong></p>';
-                    $toPrint = $toPrint.'<select hidden id="site" name="site"><option value="'.$row["id"].'">'.$row["site_name"].'</option></select>';
-                    $toPrint = $toPrint.'<div class="top-search-txt"><a style="text-decoration: none; color: black;">'.substr($row["site_description"],0, 100).'<br><input type="submit" value="show more"></div>';
-                    $toPrint = $toPrint.'</div></div></form>';
+                    $toPrint = $toPrint.'<div class="top-search-txt"><a style="text-decoration: none; color: black;">'.$row["site_description"].'</div>';
+                    $toPrint = $toPrint.'</div></div>';
                     
                     echo $toPrint;
                 } 
@@ -97,6 +96,7 @@
         </div>
         <div class="col-sm-4"></div>
     </div>
+
     <!--------------------------------------------------FOOTER-------------------------------------------------------------->
 <footer class="container-fluid footer">
         <div class="row">
