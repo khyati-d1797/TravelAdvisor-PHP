@@ -61,6 +61,7 @@
                         });
                     </script>
                 </div>
+                
                 <div class="row" style="padding-top: 10px;">
                     <div class="col-sm-3" align="right"><input class="btn" type="button" onclick="prevImage();" style="height:95px; margin: auto;" value="Prev"></div>
                     <div class="col-sm-1 trip-detail-img-slider" onclick="pickImage1();"><img class="trip-detail-imgs" id="imgX1" src="images/s1.jpg" width="100%" border="1" style="border:5px solid yellow;"></div>
