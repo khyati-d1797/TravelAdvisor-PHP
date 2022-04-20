@@ -82,7 +82,43 @@
                 <h2>Choose your own itinerary</h2>
                 <h4>Choose your own stop and transportation, hotels and meals. Prices will be according to your choices.</h4>
             </div>
-            
+            <?php
+                /*
+                * This function when called at the start of all the php scripts, 
+                * the warnings will disappear. But debugging may become a problem.
+                * So, to debug, just comment and reload the page again.
+                */
+                error_reporting(E_ALL ^ E_WARNING);
+
+                $fromDate = $_POST["fromDate"];
+                if(!empty($fromDate))
+                    echo "<br>T Date : ".$fromDate;
+                $toDate = $_POST["toDate"];
+                if(!empty($fromDate))
+                echo "<br>T Date : ".$toDate;
+                $hotel = $_POST["hotel"];
+                if(!empty($hotel))
+                echo "<br>Hotel Id : ".$hotel;
+
+                $sites = $_POST['site_name'];
+                if(empty($sites)) 
+                {
+                  
+                } 
+                else 
+                {
+                  $N = count($sites);
+              
+                  echo("<br>You selected $N site(s): ");
+                  for($i=0; $i < $N; $i++)
+                  {
+                    echo($sites[$i] . " ");
+                  }
+                }
+
+
+            ?>
+        <form action="createOwnPackage.php" method="POST">
             <div class="just-card">
                 <div class="row" style="text-align: center;"> 
                     <h1>Dates</h1>
@@ -131,7 +167,7 @@
                                     $toPrint = $toPrint.'<img id="img1" src="'.$row["img_url"].'" alt="Description" style="width: 600px; 
                                     height: 400px; 
                                     object-fit: cover;">';
-                                    $toPrint = $toPrint.'<p class="top-search-text-head"><strong><input type="checkbox" id="'.$row["id"].'" name="'.$row["site_name"].'" value="'.$row["id"].'"> ' . $row["site_name"] . '</strong></p>';
+                                    $toPrint = $toPrint.'<p class="top-search-text-head"><strong><input type="checkbox" name="site_name[]" value="'.$row["id"].'"> ' . $row["site_name"] . '</strong></p>';
                                     $toPrint = $toPrint.'<div class="top-search-txt"><a style="text-decoration: none; color: black;">'.substr($row["site_description"],0, 100).'</a></div>';
                                     $toPrint = $toPrint.'<div class="top-search-txt"><strong>Ratings:</strong> ' . $row["site_rating"]. '<br><strong>Price:</strong> $' . $row["site_price"].'</div>';
                                     $toPrint = $toPrint.'';
@@ -278,10 +314,10 @@
                     </ul>
                 </div>
             </div>
-            <button id="genTrip" type="button" class="btn btn-success btn-lg btn-block" onclick="buildTrip();">Generate Trip</button>
-            <button type="button" class="btn btn-secondary btn-lg btn-block" onclick="reset();">Reset Trip</button>
+            <input type=submit id="genTrip" class="btn btn-success btn-lg btn-block">
+            <!-- <button type="button" class="btn btn-secondary btn-lg btn-block" onclick="reset();">Reset Trip</button> -->
             <br>
-             
+        </form>     
             <h1 class="finalItinerary" hidden>Final Itinerary</h1>
             <h4 class="finalItinerary" hidden>Here are all the things you'll be visiting, eating and staying at during your trip.</h4>
             <div class="row finalItinerary" hidden>
