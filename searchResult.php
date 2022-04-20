@@ -33,8 +33,26 @@
                 <li><a href="home.php">Services</a></li>
                 <li><a href="gallery.php">Gallery</a></li>
                 <li><a href="contactUs.php">Contact US</a></li>
-                <li><a href="Login.php">LOGIN</a></li>
-                <li><a href="signUp.php">SIGNUP</a></li>
+                <?php
+                    // if(isset($_SESSION["username"]))
+                    // {
+                    //     echo "<li><a id='myBtn'>".$_SESSION["username"]."</a></li>"; 
+                    // }else{
+                    //     echo "<li><a id='myBtn'>LOGIN</a></li>";
+                    //     echo "<li><a id='myBtn'>SIGNUP</a></li>";
+                    // }
+
+                    if(isset($_COOKIE["username"]))
+                    {
+                      echo "<li><a id='myBtn'>".$_COOKIE["username"]."</a></li>"; 
+                    }else{
+                      echo "<li><a id='myBtn'>LOGIN</a></li>";
+                    }
+
+                ?>
+                <!-- <li><a href="Login.php">LOGIN</a></li>
+                <li><a href="signUp.php">SIGNUP</a></li> -->
+
             </ul>
             </div>
         </div>
@@ -50,7 +68,7 @@
 
         <div class="row">
     <?php
-        $location = $_POST["dest"];
+            $location = $_POST["dest"];
 
             $servername = "localhost:3306";
             $username = "root";
@@ -68,14 +86,13 @@
             $result = $conn->query($sql);
             if ($result->num_rows > 0) {
                 while($row = $result->fetch_assoc()) {
-                    $toPrint = '<form action="details.php" method="POST"><div class="col-sm-4"><div class="thumbnail just-card">';
+                    $toPrint = '<div class="col-sm-4"><div class="thumbnail just-card">';
                     $toPrint = $toPrint.'<img id="img1" src="'.$row["img_url"].'" alt="Description" style="width: 600px; 
                     height: 400px; 
                     object-fit: cover;">';
                     $toPrint = $toPrint.'<p class="top-search-text-head"><strong>' . $row["site_name"] . '</strong></p>';
-                    $toPrint = $toPrint.'<select hidden id="site" name="site"><option value="'.$row["id"].'">'.$row["site_name"].'</option></select>';
-                    $toPrint = $toPrint.'<div class="top-search-txt"><a style="text-decoration: none; color: black;">'.substr($row["site_description"],0, 100).'<br><input type="submit" value="show more"></div>';
-                    $toPrint = $toPrint.'</div></div></form>';
+                    $toPrint = $toPrint.'<div class="top-search-txt"><a style="text-decoration: none; color: black;">'.substr($row["site_description"],0, 100).'<i style="color: limegreen"> Click to Open</i></a></div>';
+                    $toPrint = $toPrint.'</div></div>';
                     
                     echo $toPrint;
                 } 

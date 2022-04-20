@@ -26,6 +26,8 @@
 
     
 
+    
+
     $sql = "select login_username, login_password, usertype from login where login_username='".$username."' AND login_password='".$password."'";
     $result = $conn->query($sql);
 
@@ -35,12 +37,16 @@
         echo "user: " . $row["login_username"]. " - pass: " . $row["login_password"]. " - type : " . $row["usertype"]. "<br>";
         if($row["usertype"] == "user"){
           echo "user selected";
-          $_SESSION["username"]=$username;
-          header("loaction:home.php");
+          $cookie_name = "username";
+          $cookie_value = $username;
+          setcookie($cookie_name, $cookie_value, time() + (10), "/");
         }elseif($row["usertype"] == "admin"){
           echo "admin selected";
-          $_SESSION["username"]=$username;
-          header("loaction:admin.php");
+          $cookie_name = "username";
+          $cookie_value = $username;
+          setcookie($cookie_name, $cookie_value, time() + (10), "/");
+          header('location: http://localhost:8080/TravelAdvisor-PHP/admin.php');
+        die;
         }
         else{
           echo "Invalid Username and Password";
@@ -104,7 +110,15 @@
         <li><a href="home.php">Services</a></li>
         <li><a href="#testimonial">Testimonials</a></li>
         <li><a href="contactUs.php">Contact US</a></li>
-        <li><a id="myBtn">LOGIN</a></li>
+        <?php
+        if(isset($_COOKIE["username"]))
+        {
+          echo "<li><a id='myBtn'>".$_COOKIE["username"]."</a></li>"; 
+        }else{
+          echo "<li><a id='myBtn'>LOGIN</a></li>";
+        }
+         
+        ?>
         <!-- Modal -->
         <div class="modal fade" id="myModal" role="dialog">
           <div class="modal-dialog">
@@ -115,7 +129,7 @@
                 <h4><span class="glyphicon glyphicon-lock"></span>Login</h4>
               </div>
               <div class="modal-body" style="padding:20px;">
-                <form action="#" method="POST" >
+                <form action="home.php" method="POST" >
                   <div class="form-group">
                     <label for="usrname"><span class="glyphicon glyphicon-user"></span> Username</label>
                     <input type="text" class="form-control" id="usrname" name="username" placeholder="Enter email">
@@ -127,7 +141,7 @@
                   <div class="checkbox">
                     <label><input type="checkbox" value="" checked>Remember me</label>
                   </div>
-                    <button type="submit" class="btn modal-login-btn btn-block"><span class="glyphicon glyphicon-off"></span> Login</button>
+                    <input type="submit" class="btn modal-login-btn btn-block" value = "Login">
                 </form>
               </div>
               <div class="modal-footer">
