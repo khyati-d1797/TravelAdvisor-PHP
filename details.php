@@ -44,7 +44,6 @@
     
     <div class="container-fluid search-result-main"> 
         <div class="container">
-            <h2>More Information</h2>
             <h4>Showing additional information for the site chosen</h4>
         </div>
 
@@ -68,13 +67,14 @@
             $result = $conn->query($sql);
             if ($result->num_rows > 0) {
                 while($row = $result->fetch_assoc()) {
-                    $toPrint = '<div class="col-sm-12"><div class="thumbnail just-card">';
+                    $toPrint = '<div class="col-sm-2"></div><div class="col-sm-8"><div class="thumbnail just-card">';
                     $toPrint = $toPrint.'<img id="img1" src="'.$row["img_url"].'" alt="Description" style="width: 600px; 
-                    height: 400px; 
+                    height: 600px; 
                     object-fit: cover;">';
                     $toPrint = $toPrint.'<p class="top-search-text-head"><strong>' . $row["site_name"] . '</strong></p>';
-                    $toPrint = $toPrint.'<div class="top-search-txt"><a style="text-decoration: none; color: black;">'.$row["site_description"].'</div>';
-                    $toPrint = $toPrint.'</div></div>';
+                    $toPrint = $toPrint.'<div class="top-search-txt"><a style="text-decoration: none; color: black;">'.$row["site_description"];
+                    $toPrint = $toPrint.'<p><br><strong>Site Rating:</strong> '.$row["site_rating"].'<br><strong>Site Price:</strong> '.$row["site_price"].'</p></div>';
+                    $toPrint = $toPrint.'</div></div><div class="col-sm-2"></div>';
                     
                     echo $toPrint;
                 } 
