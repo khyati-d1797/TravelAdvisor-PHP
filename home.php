@@ -44,40 +44,12 @@
         }
         else{
           echo "Invalid Username and Password";
-        //   echo $username;
-        // echo $password;
-        // echo $sql;
-        // echo $row["usertype"];
         }
         break;
       }
     } else {
       echo "0 results";
     }
-
-
-
-    // $query_run = mysqli_query($conn,$sql);
-    // $row = mysqli_fetch_row($query_run);
-    // echo $row["usertype"];
-    // if($row["usertype"] == "user")
-    // {
-    //   $_SESSION["username"]=$username;
-    //   header("loaction:home.php");
-    // }
-    // elseif($row["usertype"] == "admin")
-    // {
-    //   $_SESSION["username"]=$username;
-    //   header("loaction:admin.php");
-    // }
-    // else
-    // {
-    //   echo "Invalid Username and Password";
-    //   echo $username;
-    // echo $password;
-    // echo $sql;
-    // echo $row["usertype"];
-    // }
     $conn->close();
   }
 
@@ -187,16 +159,28 @@
   <form action="searchResult.php" method="post">
     <div class="row">
       <div class="col-sm-4"></div>
-      <div class="input-group col-sm-4">
-        <select name="location" id="location" class="form-control">
-            <option value="Toronto">Toronto</option>
-            <option value="Vancouver">Vancouver</option>
-            <option value="Nova Scotia">Nova Scotio</option>
-            <option value="Ottawa">Ottawa</option>
+      <div class="input-group col-sm-4" style="color:black; ">
+        <select id="dest" name="dest" style="padding:5px;">
+              <?php 
+                  $servername = "localhost:3306";
+                  $username = "root";
+                  $password = "";
+                  $dbname = "travel_explorer_db";
+                  $conn = new mysqli($servername, $username, $password, $dbname);
+                  if ($conn->connect_error) 
+                      die("Connection failed: " . $conn->connect_error);
+                  $sql = "select id, des_name from destinations";
+                  $result = $conn->query($sql);
+                  if ($result->num_rows > 0) {
+                      while($row = $result->fetch_assoc()) {
+                          echo "<option value=".$row["id"].">".$row["des_name"]."</option>";                            
+                      }
+                  } else {
+                      echo "0 results";
+                  }
+              ?>
         </select>
-        <div class="input-group-btn">
-          <input type="submit" value="Submit" class="btn btn-danger" >
-        </div>
+        <input type="submit" value="Submit" class="btn btn-danger" >
       </div>
       <div class="col-sm-4"></div>
     </div>
@@ -212,7 +196,7 @@
       <h2>About US</h2><br>
       <h4>Traveling is a part of human life where we just want to relax and spend time with our closed ones or do solo trips in nature and relax our mind. In the past couple of years, a lot of things have changed so this website is going to be an easy platform for users to explore places.</h4><br>
       <p>Traveling is a part of human life where we just want to relax and spend time with our closed ones or do solo trips in nature and relax our mind. In the past couple of years, a lot of things have changed so this website is going to be an easy platform for users to explore places.</p>
-      <br><button class="btn btn-default btn-lg" onclick="document.location='contactUs.php'" >Contact US</button>
+      <br><button class="btn btn-default btn-lg" onclick="contactUs.php" >Contact US</button>
     </div>
     <div class="col-sm-2"></div>
   </div>
@@ -226,8 +210,8 @@
   <div class="row slideanim">
     <div class="col-sm-4">
       <span class="glyphicon glyphicon-off logo-small"></span>
-      <h4>Search based on Location</h4>
-      <p><a href="searchType.php">Just add a location and we will provide you with the list of destinations.</a></p>
+      <h4>Search based on Filters</h4>
+      <p><a href="searchType.php">Just add a destination and we will provide you with the list of sites based on filter.</a></p>
     </div>
     <div class="col-sm-4"></div>
     <div class="col-sm-4">
@@ -244,7 +228,7 @@
       <a href="createOwnPackage.php">
         <span class="glyphicon glyphicon-certificate logo-small"></span>
         <h4>Create own package</h4>
-        <p>Create your own package by the list of your choice.</p>
+        <p>Create your own package by the list of choices.</p>
       </a>
     </div>
     <div class="col-sm-4">
