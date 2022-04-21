@@ -62,3 +62,9 @@ We can add more hotels to a specific detination and we can also delete hotel.
 We can add more sites to a specific detination and we can also delete site.
 
 
+# Database
+Please use travel_explorer_db.sql and import it into any MySQL database tool of your choice.
+### Note
+For this project, we recommend using XAMPP's MyPhpAdmin.
+
+
