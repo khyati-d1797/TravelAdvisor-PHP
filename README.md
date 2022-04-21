@@ -2,6 +2,9 @@
 ### This is a php project using MySQL as database.
 It's a travel website which allows user to login, signup, browse and filter travel packages.
 We can also create our own packages.
+
+Entry point is ```home.php```
+Use ```localhost:8080/TravelAdvisor-PHP/home.php``` for the website entry.
 ### MySQL sample code
 ```
 <?php
