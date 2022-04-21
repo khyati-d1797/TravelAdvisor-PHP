@@ -30,9 +30,10 @@
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav navbar-right">
-      <li><a href="home.php">ABOUT US</a></li>
-        <li><a href="home.php">Services</a></li>
+      <li><a href="#about">ABOUT US</a></li>
+        <li><a href="#services">Services</a></li>
         <li><a href="gallery.php">Gallery</a></li>
+        <li><a href="#testimonial">Testimonials</a></li>
         <li><a href="contactUs.php">Contact US</a></li>
         
         <!-- Modal -->

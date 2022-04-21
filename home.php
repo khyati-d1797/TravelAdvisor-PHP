@@ -45,7 +45,7 @@
           $cookie_name = "username";
           $cookie_value = $username;
           setcookie($cookie_name, $cookie_value, time() + (10), "/");
-          header('location: http://localhost:8080/TravelAdvisor-PHP/admin.php');
+          header('location: http://localhost:8080/TravelExplorer3/admin.php');
         die;
         }
         else{
@@ -106,8 +106,9 @@
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav navbar-right">
-      <li><a href="home.php">ABOUT US</a></li>
-        <li><a href="home.php">Services</a></li>
+      <li><a href="#about">ABOUT US</a></li>
+        <li><a href="#services">Services</a></li>
+        <li><a href="gallery.php">Gallery</a></li>
         <li><a href="#testimonial">Testimonials</a></li>
         <li><a href="contactUs.php">Contact US</a></li>
         <?php
@@ -225,7 +226,7 @@
     <div class="col-sm-4">
       <span class="glyphicon glyphicon-off logo-small"></span>
       <h4>Search based on Filters</h4>
-      <p><a href="searchType.php">Just add a destination and we will provide you with the list of sites based on filter.</a></p>
+      <p><a href="BookPackage.php">Just add a destination and we will provide you with the list of sites based on filter.</a></p>
     </div>
     <div class="col-sm-4"></div>
     <div class="col-sm-4" >
