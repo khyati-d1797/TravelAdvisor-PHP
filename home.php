@@ -109,7 +109,7 @@
       <li><a href="#about">ABOUT US</a></li>
         <li><a href="#services">Services</a></li>
         <li><a href="gallery.php">Gallery</a></li>
-        <li><a href="#testimonial">Testimonials</a></li>
+        <li><a href="testimonials.php">Testimonials</a></li>
         <li><a href="contactUs.php">Contact US</a></li>
         <?php
         if(isset($_COOKIE["username"]))

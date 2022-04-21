@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 20, 2022 at 06:06 AM
+-- Generation Time: Apr 21, 2022 at 04:53 AM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 8.1.1
 
@@ -57,7 +57,9 @@ INSERT INTO `contacts_form` (`id`, `contact_name`, `contact_country`, `contact_e
 (12, 'Ida', 'hong kong', 'ida@yahoo.com', 'good'),
 (13, 'Marly', 'usa', 'marly@yahoo.com', 'good'),
 (0, 'KHYATI HIRALAL DHIVER', 'canada', 'jinnydhiver@gmail.com', 'asdsadsdasdsadsadsaa'),
-(0, 'Khyati Dhiver', 'india', 'jinnydhiver@gmail.com', 'edftbgyhumjkl;');
+(0, 'Khyati Dhiver', 'india', 'jinnydhiver@gmail.com', 'edftbgyhumjkl;'),
+(0, 'KHYATI HIRALAL DHIVER', 'canada', 'jinnydhiver@gmail.com', 'Good website'),
+(0, 'Khyati Dhiver', 'india', 'jinnydhiver@gmail.com', 'USEFULLLLLLLLLLLLLLLLLLLL');
 
 -- --------------------------------------------------------
 
@@ -111,7 +113,8 @@ INSERT INTO `destinations` (`id`, `des_name`, `des_distance`, `des_rating`) VALU
 (3, 'Niagara Falls', '128.20', '4.7'),
 (4, 'Toronto', '0.00', '4.5'),
 (5, 'Montreal', '540.50', '4.3'),
-(14, 'vapi', '600.00', '4.5');
+(14, 'vapi', '600.00', '4.5'),
+(15, 'USA', '9999.99', '4.5');
 
 -- --------------------------------------------------------
 
@@ -170,16 +173,19 @@ CREATE TABLE `login` (
   `id` int(11) NOT NULL,
   `login_username` varchar(50) NOT NULL,
   `login_password` varchar(50) NOT NULL,
-  `usertype` varchar(10) NOT NULL DEFAULT 'user'
+  `usertype` varchar(10) NOT NULL DEFAULT 'user',
+  `email` varchar(100) NOT NULL,
+  `address` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `login`
 --
 
-INSERT INTO `login` (`id`, `login_username`, `login_password`, `usertype`) VALUES
-(1, 'admin', 'admin', 'admin'),
-(2, 'khyati_17', 'khyati1797', 'user');
+INSERT INTO `login` (`id`, `login_username`, `login_password`, `usertype`, `email`, `address`) VALUES
+(1, 'admin', 'admin', 'admin', '', ''),
+(2, 'khyati_17', 'khyati1797', 'user', '', ''),
+(3, 'KHYATI', 'khyati1797', 'user', 'jinnydhiver@gmail.com', '10 MARKBROOK LANE, ETOBICOKE, ON, M9V 5E3');
 
 -- --------------------------------------------------------
 
@@ -194,6 +200,15 @@ CREATE TABLE `login_form` (
   `login_password` varchar(30) NOT NULL,
   `remember_me` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `login_form`
+--
+
+INSERT INTO `login_form` (`id`, `login_username`, `login_password`, `remember_me`) VALUES
+(0, 'jinny.dhiver@gmail.com', 'khyati1797', 'check'),
+(0, 'jinnydhiver@gmail.com', 'khyati89', 'check'),
+(0, 'jinnydhiver@gmail.com', 'khyati17', 'check');
 
 -- --------------------------------------------------------
 
@@ -282,6 +297,33 @@ INSERT INTO `table_name` (`id`, `des_id`, `hotel_id`, `t_id`) VALUES
 (0, 0, 0, ''),
 (0, 0, 0, ''),
 (0, 0, 0, '');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `testimonials`
+--
+
+DROP TABLE IF EXISTS `testimonials`;
+CREATE TABLE `testimonials` (
+  `id` int(11) NOT NULL,
+  `picture` text DEFAULT NULL,
+  `name` varchar(255) DEFAULT NULL,
+  `designation` varchar(255) DEFAULT NULL,
+  `comment` text NOT NULL,
+  `created_at` datetime DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `testimonials`
+--
+
+INSERT INTO `testimonials` (`id`, `picture`, `name`, `designation`, `comment`, `created_at`) VALUES
+(1, 'testimonials/download.jpg', 'Vancouver Aquarium', '', 'The Vancouver Aquarium is a public aquarium located in Stanley Park in Vancouver, British Columbia, Canada. In addition to being a major tourist attraction for Vancouver, the aquarium is a centre for marine research, ocean literacy education, conservation and marine animal rehabilitation. The Vancouver Aquarium was one of the first facilities to incorporate professional naturalists into the galleries to interpret animal behaviours. Prior to this, at the London Zoo Fish House, naturalists James S. Bowerbank, Ray Lankester, David W. Mitchell and Philip H. Gosse had regularly held open house events, but the Vancouver Aquarium was the first to employ educational naturalists on a full-time basis. Aquarium research projects extend worldwide, and include marine mammal rescue and rehabilitation. On August 9, 2010 Prime Minister Stephen Harper and B.C. Premier Gordon Campbell announced capital funding of up to $15 million. The province would donate $10 million in funding over the next three yea', '2022-04-13 04:03:15'),
+(2, 'testimonials/download (1).jpg', 'Kitsilano Beach', '', 'Kitsilano Beach is one of the most popular beaches in Vancouver, especially in the warm summer months. Located at the north edge of the Kitsilano neighbourhood, the beach faces out onto English Bay. The beach is home to the longest swimming pool in Canada, the salt-water outdoor Kitsilano Pool, operated by the Vancouver Park Board and open annually from May to September. Toward the northern edge of the beach is a playground and a number of beach volleyball courts. In the Squamish language, it is called Xwupxpayʼem, which translates to having red cedar. In 1901, the beach was being transformed for future inclusion in a city park system. The whole approach to the beach will be cleared, graded and seeded, and the beach itself cleared of what rocks and driftwood there is to annoy bathers, and the magnificent property will be made available for the people', '2022-04-13 04:05:31'),
+(3, 'testimonials/download (2).jpg', 'Stanley Park', '', 'Stanley Park is a 405-hectare public park in British Columbia, Canada that makes up the northwestern half of Vancouver\'s Downtown Peninsula, surrounded by waters of Burrard Inlet and English Bay. The park borders the neighbourhoods of West End and Coal Harbour to its southeast, and is connected to the North Shore via the Lions Gate Bridge. The historic lighthouse on Brockton Point marks the park\'s easternmost point. While it is not the largest of its kind, Stanley Park is about one-fifth larger than New York City\'s 340-hectare Central Park and almost half the size of London\'s 960-hectare Richmond Park. Stanley Park has a long history. The land was originally used by Indigenous peoples for thousands of years before British Columbia was colonized by the British during the 1858 Fraser Canyon Gold Rush and was one of the first areas to be explored in the city. For many years after colonization, the future park with its abundant resources would also be home to non-Indigenous settlers.', '2022-04-13 04:07:00'),
+(4, 'testimonials/download (3).jpg', 'Granville Island', '', ' Granville Island is a peninsula and shopping district in Vancouver, British Columbia, Canada. It is located across False Creek from Downtown Vancouver under the south end of the Granville Street Bridge. The peninsula was once an industrial manufacturing area, but today it is a hotspot for Vancouver tourism and entertainment. Some Vancouver based tour companies, such as Discover Vancouver Tours and Vancity Tours, offer stops at Granville Island. The area was named after Granville Leveson-Gower, 2nd Earl Granville. The peninsula is home to 275 businesses and facilities that employ more than 2,500 people and generates more than $215 million in economic activity each year. Granville Island provides amenities such as a large public market, an extensive marina, a hotel, Arts Umbrella, False Creek Community Centre, various performing arts theatres including Vancouver\'s only professional improvisational theatre company Vancouver Theatresports League, the Arts Club Theatre Company and Carousel', '2022-04-13 04:08:30'),
+(5, 'testimonials/download (4).jpg', 'Contempory Art Gallery', '', 'The Contemporary Art Gallery is a non-profit public contemporary art gallery in downtown Vancouver. The CAG exhibits local, national, and international artists, primarily featuring emerging local artists producing Canadian contemporary art. It has exhibited work by many of Vancouver\'s most acclaimed artists, including Stan Douglas, Ian Wallace, Rodney Graham, Liz Magor, and Brian Jungen, and it continues to feature local artists such as Damian Moppett, Shannon Oksanen, Elspeth Pratt, Myfanwy MacLeod, Krista Belle Stewart and many others. International artists who have had exhibitions at the CAG include Dan Graham, Christopher Williams, Rachel Harrison, Hans-Peter Feldmann and Ceal Floyer. Other notable people that have curated or written for the CAG include Douglas Coupland, Beatriz Colomina, Roy Arden, and John Welchman. The gallery offers free admission to all visitors.', '2022-04-13 04:11:01');
 
 -- --------------------------------------------------------
 
@@ -505,7 +547,7 @@ ALTER TABLE `user_feedback`
 -- AUTO_INCREMENT for table `destinations`
 --
 ALTER TABLE `destinations`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT for table `hotels`
@@ -517,7 +559,7 @@ ALTER TABLE `hotels`
 -- AUTO_INCREMENT for table `login`
 --
 ALTER TABLE `login`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `sites`
