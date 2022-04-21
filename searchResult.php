@@ -87,13 +87,25 @@
             $result = $conn->query($sql);
             if ($result->num_rows > 0) {
                 while($row = $result->fetch_assoc()) {
-                    $toPrint = '<div class="col-sm-4"><div class="thumbnail just-card">';
+                    // $toPrint = '<div class="col-sm-4"><div class="thumbnail just-card">';
+                    // $toPrint = $toPrint.'<img id="img1" src="'.$row["img_url"].'" alt="Description" style="width: 600px; 
+                    // height: 400px; 
+                    // object-fit: cover;">';
+                    // $toPrint = $toPrint.'<p class="top-search-text-head"><strong>' . $row["site_name"] . '</strong></p>';
+                    // $toPrint = $toPrint.'<div class="top-search-txt"><a style="text-decoration: none; color: black;">'.substr($row["site_description"],0, 100).'<i style="color: limegreen"> Click to Open</i></a></div>';
+                    // $toPrint = $toPrint.'</div></div>';
+
+
+
+                    $toPrint = '<form action="details.php" method="POST"><div class="col-sm-4"><div class="thumbnail just-card">';
                     $toPrint = $toPrint.'<img id="img1" src="'.$row["img_url"].'" alt="Description" style="width: 600px; 
                     height: 400px; 
                     object-fit: cover;">';
                     $toPrint = $toPrint.'<p class="top-search-text-head"><strong>' . $row["site_name"] . '</strong></p>';
-                    $toPrint = $toPrint.'<div class="top-search-txt"><a style="text-decoration: none; color: black;">'.substr($row["site_description"],0, 100).'<i style="color: limegreen"> Click to Open</i></a></div>';
-                    $toPrint = $toPrint.'</div></div>';
+                    $toPrint = $toPrint.'<select hidden id="site" name="site"><option value="'.$row["id"].'">'.$row["site_name"].'</option></select>';
+                    $toPrint = $toPrint.'<div class="top-search-txt"><a style="text-decoration: none; color: black;">'.substr($row["site_description"],0, 100).'<br><input type="submit" value="show more"></div>';
+                    $toPrint = $toPrint.'</div></div></form>';
+
                     
                     echo $toPrint;
                 } 
